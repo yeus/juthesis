@@ -3,3 +3,4 @@
 *.swp
 *.log
 satcomponents_AOCS_examples_mission_simulation_ideal/
+.ipynb_checkpoints/
