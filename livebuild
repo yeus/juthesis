@@ -27,7 +27,7 @@
 
 inotifywait -m -e close_write,moved_to,create  . |
 while read -r directory events filename; do
-  if [ "$filename" = "introduction.md" ]; then
+  if [[ $filename == *.md ]]; then
     ./build
     #echo "test"
   fi

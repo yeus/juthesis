@@ -4,8 +4,11 @@
 
 echo "building"
 
-pandoc --biblatex introduction.md -o introduction.tex
-
+for f in introduction stateoftheart
+do
+    pandoc --biblatex "$f".md -o "$f".tex
+done
+    
 #cd scripts
 #sh buildlatex.sh
 #cd ..
