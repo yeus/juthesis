@@ -1,11 +1,16 @@
-#builds the entire work
+#!/bin/bash
 
-#pandoc --biblatex introduction.md -o introduction.tex
+#builds the entire thesis
 
-cd scripts
-sh buildlatex.sh
-cd ..
+echo "building"
+
+pandoc --biblatex introduction.md -o introduction.tex
+
+#cd scripts
+#sh buildlatex.sh
+#cd ..
 
 pdflatex promotion.tex
 rm *.aux *.log *.out *.xml *-blx.bib
 #rm *.upa *.upb
+rm introduction.tex

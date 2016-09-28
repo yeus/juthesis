@@ -1,0 +1,34 @@
+#!/bin/bash
+
+#script continuosly builds the latex file while doing any changes
+
+
+#while inotifywait -e close_write introduction.md; do ./build; done
+#while inotifywait -e close_write introduction.md; do echo "test"; done
+
+
+
+# inotifywait -q -m -e close_write myfile.py |
+# while read -r filename event; do
+#   ./myfile.py         # or "./$filename"
+# done
+# 
+# # The first snippet is simpler, but it has a significant downside: it will miss changes performed while inotifywait isn't running (in particular while myfile is running). The second snippet doesn't have this defect. However, beware that it assumes that the file name doesn't contain whitespace. If that's a problem, use the --format option to change the output to not include the file name:
+# 
+# inotifywait -q -m -e close_write --format %e myfile.py |
+# while read events; do
+#   ./myfile.py
+# done
+
+
+# Either way, there is a limitation: if some program replaces myfile.py with a different file, rather than writing to the existing myfile, inotifywait will die. Many editors work that way.
+# 
+# To overcome this limitation, use inotifywait on the directory:
+
+inotifywait -m -e close_write,moved_to,create  . |
+while read -r directory events filename; do
+  if [ "$filename" = "introduction.md" ]; then
+    ./build
+    #echo "test"
+  fi
+done
