@@ -10,7 +10,10 @@ pandoc --biblatex introduction.md -o introduction.tex
 #sh buildlatex.sh
 #cd ..
 
-pdflatex promotion.tex
-rm *.aux *.log *.out *.xml *-blx.bib
+#pdflatex promotion.tex
+pdflatex --interaction nonstopmode -halt-on-error -file-line-error promotion.tex # >/dev/null
+
+#remove files only if everything is buid including toc and pdf annotations etc..
+#rm *.aux *.log *.out *.xml *-blx.bib
 #rm *.upa *.upb
-rm introduction.tex
+#rm introduction.tex
