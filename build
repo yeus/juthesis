@@ -1,5 +1,11 @@
 #builds the entire work
 
-pandoc --biblatex introduction.md -o introduction.tex
-pdftex promotion.tex
-rm *.aux *.log
+#pandoc --biblatex introduction.md -o introduction.tex
+
+cd scripts
+sh buildlatex.sh
+cd ..
+
+pdflatex promotion.tex
+rm *.aux *.log *.out *.xml *-blx.bib
+#rm *.upa *.upb
