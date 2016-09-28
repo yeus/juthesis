@@ -2,3 +2,4 @@
 
 pandoc --biblatex introduction.md -o introduction.tex
 pdftex promotion.tex
+rm *.aux *.log
