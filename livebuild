@@ -28,7 +28,8 @@
 inotifywait -m -e close_write,moved_to,create  . |
 while read -r directory events filename; do
   if [[ $filename == *.md ]]; then
+    echo "start building!"
     ./build
-    #echo "test"
+    echo "\n\n\n\n\n   <<<<fertig!!>>>>>>   \n\n\n\n"
   fi
 done
