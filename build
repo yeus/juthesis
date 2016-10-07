@@ -4,7 +4,9 @@
 
 echo "building"
 
-./scripts/buildlatex
+cd scripts
+./buildlatex
+cd ..
 
 for f in introduction stateoftheart
 do
