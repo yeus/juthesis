@@ -27,7 +27,7 @@ with open(filename) as texfile:
 
 newtex = texstr
 for acro, acrolong in acros:
-    repl = r'\\acro{{{}}}'.format(acro)
+    repl = r'\\ac{{{}}}'.format(acro)
     nosec = r'(?![^{]*})' #make sure, regex does no appear between curly braces
     #TODO: do only not replace in section headings between curly braces
     regex = r'(\b'+acro+r'\b)' + nosec  
