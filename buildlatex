@@ -9,6 +9,9 @@ do
     pandoc --biblatex "$f".md -o "$f".tex
 done
 
+#generate acronyms
+sh acrofind
+
 #pdflatex promotion.tex
 pdflatex --interaction nonstopmode -halt-on-error -file-line-error promotion.tex # >/dev/null
 
