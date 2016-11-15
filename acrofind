@@ -2,6 +2,7 @@
 
 #converts all ipython notebooks to latex
 
+rm acro.log
 
 FILES="scripts/acs_analysis.tex
 scripts/autodesign.tex

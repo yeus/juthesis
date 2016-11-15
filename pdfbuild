@@ -1,0 +1,22 @@
+#!/bin/bash
+
+#builds the entire thesis
+
+echo "building pdf with anotations and bibtex"
+
+
+
+#pdflatex promotion.tex
+pdflatex --interaction nonstopmode -halt-on-error -file-line-error promotion.tex # >/dev/null
+bibtex promotion.tex
+./acrofind
+pdflatex --interaction nonstopmode -halt-on-error -file-line-error promotion.tex # >/dev/null
+pdflatex --interaction nonstopmode -halt-on-error -file-line-error promotion.tex # >/dev/null
+
+
+echo " <<<<<<<<<<<<<<<pdf ready!!>>>>>>>>>>>> "
+
+#remove files only if everything is buid including toc and pdf annotations etc..
+#rm *.aux *.log *.out *.xml *-blx.bib
+#rm *.upa *.upb
+#rm introduction.tex

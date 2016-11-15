@@ -6,6 +6,7 @@
 
 import re #regular expressions to search and replace acronyms
 import sys
+from collections import defaultdict
 #import getopt
 
 repl = "\\acro{}"
@@ -26,6 +27,7 @@ with open(filename) as texfile:
 #TODO:  if line starts with "\section"  dont replace!!    
 
 newtex = texstr
+counter=defaultdict(int)
 for acro, acrolong in acros:
     repl = r'\\ac{{{}}}'.format(acro)
     nosec = r'(?![^{]*})' #make sure, regex does no appear between curly braces
@@ -33,9 +35,14 @@ for acro, acrolong in acros:
     regex = r'(\b'+acro+r'\b)' + nosec  
     newtex, n = re.subn(regex,repl,newtex)
     #if n>0: print("replacements for {}: {}".format(regex,n))
-    
+    if n > 0: counter[acro] += n
+
 print(newtex)
 
+with open("acro.log","a") as acrolog:
+    acrolog.write("found: {}\n".format(counter))
+#print("replacing acros in file: "+ newtex)
+#print("found: {}".format(counter))
 
 #class Usage(Exception):
     #def __init__(self, msg):
