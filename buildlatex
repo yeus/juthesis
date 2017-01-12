@@ -2,7 +2,7 @@
 
 #converts all ipython notebooks to latex
 
-for f in *.ipynb
+for f in ../*.ipynb
 do
     jupyter nbconvert --to latex --template chapter_nocode.tplx "$f"
 done
