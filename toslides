@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#converts all ipython notebooks to latex
+
+jupyter nbconvert --to slides --template chapter_nocode.tplx "$f"
+
+echo " <<<<<<<<<<<<< slides ready >>>>>>>>>>>>>>>>>>>>>>>>>>"
+
+#pdflatex notebooks.tex
+
+rm *.log *.aux
