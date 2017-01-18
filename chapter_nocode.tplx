@@ -14,7 +14,17 @@
 ((* block postdoc *))
 ((* endblock postdoc *))
 
+% Disable input cells
+((* block input_group *))
+((* endblock input_group *))
 
+% Don't display unknown types
+((* block unknowncell scoped *))
+((* endblock unknowncell *))
+
+%disable raw cells
+((* block rawcell *))
+((* endblock rawcell *))
 
 % New mechanism for rendering figures with captions
 
@@ -94,9 +104,3 @@
     \end{figure*}
 ((*- endblock figure_wide -*))
 ((*- endmacro *))
-
-
-
-% Disable input cells
-((* block input_group *))
-((* endblock input_group *))
