@@ -1,0 +1,14 @@
+#!/bin/bash
+
+#converts all ipython notebooks to latex
+
+for f in ../*.ipynb
+do
+    jupyter nbconvert --to markdown --template markdown_nocode.tpl "$f"
+done
+
+echo " <<<<<<<<<<<<< fertig >>>>>>>>>>>>>>>>>>>>>>>>>>"
+
+#pdflatex notebooks.tex
+
+#rm *.log *.aux
