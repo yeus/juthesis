@@ -4,15 +4,25 @@
 
 echo "building pdf with anotations and bibtex"
 
+OLDIR=$PWD
+DIR=$PWD/../build
+FN=$DIR/promotion.tex
 
+cd $DIR
 
+mkdir pictures
 #pdflatex promotion.tex
-pdflatex --interaction nonstopmode -halt-on-error -file-line-error promotion.tex # >/dev/null
-bibtex promotion.tex
-./acrofind
-pdflatex --interaction nonstopmode -halt-on-error -file-line-error promotion.tex # >/dev/null
-pdflatex --interaction nonstopmode -halt-on-error -file-line-error promotion.tex # >/dev/null
+#--shel-escape is there to enable \write18  which enables
+#latex to execute shell commands. this way 
+# imags from the web can be downloaded
+#pdflatex --shell-escape --interaction nonstopmode $FN # >/dev/null
+pdflatex --shell-escape --interaction batchmode -file-line-error $FN # >/dev/null
+bibtex $FN
+#./acrofind
+pdflatex --interaction batchmode -file-line-error $FN # >/dev/null
+pdflatex --interaction batchmode -halt-on-error -file-line-error $FN # >/dev/null
 
+cd $OLDIR
 
 echo " <<<<<<<<<<<<<<<pdf ready!!>>>>>>>>>>>> "
 

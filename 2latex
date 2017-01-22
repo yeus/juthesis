@@ -2,19 +2,50 @@
 
 #builds the entire thesis
 
-echo "building"
 
-cd scripts
-./buildlatex
-cd ..
+TDIR=$PWD/..       #thesis directory
+BDIR=$TDIR/build   #build directory
+SDIR=$TDIR/scripts #scripts directory
 
-for f in introduction stateoftheart
+echo "building in $BDIR."
+
+#cd scripts
+#./buildlatex
+#cd ../..
+
+#cp necessary latex files
+cp $PWD/pygments.tex $BDIR
+cp $PWD/main.tex $BDIR
+
+
+#copy all latex files
+for f in $TDIR/*.tex
 do
-    pandoc --biblatex "$f".md -o "$f".tex
+    echo "copy $f"
+    cp $f $BDIR
+done
+
+#convert all markdown files to latex
+for f in $TDIR/*.md
+do
+    fs=${f%.*} #${f##*/}
+    fn=${fs##*/} 
+    echo "$fn"
+    pandoc --biblatex "$TDIR/$fn.md" -o "$BDIR/$fn.tex"
+done
+
+#convert all jupyter files to latex
+for f in $SDIR/*.ipynb
+do
+    #fs=${f%.*} #${f##*/}
+    #fn=${fs##*/} 
+    echo "$f"
+    #echo "jupyter nbconvert --to latex --output-dir $BDIR --template chapter_nocode.tplx $SDIR/$fn.ipynb"
+    jupyter nbconvert --to latex --output-dir $BDIR --template chapter_nocode.tplx "$f"
 done
 
 #pdflatex promotion.tex
-pdflatex --interaction nonstopmode -halt-on-error -file-line-error promotion.tex # >/dev/null
+#pdflatex --interaction nonstopmode -halt-on-error -file-line-error promotion.tex # >/dev/null
 
 echo " <<<<<<<<<<<<<<<fertig>>>>>>>>>>>> "
 
