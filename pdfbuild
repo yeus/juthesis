@@ -6,7 +6,7 @@ echo "building pdf with anotations and bibtex"
 
 OLDIR=$PWD
 DIR=$PWD/../build
-FN=$DIR/promotion.tex
+FN=$DIR/promotion
 
 cd $DIR
 
