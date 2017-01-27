@@ -44,6 +44,10 @@ do
     jupyter nbconvert --to latex --output-dir $BDIR --template chapter_nocode.tplx "$f"
 done
 
+#copy latex build script into build directory
+cp $PWD/pdfbuild $BDIR
+cp acronyms/* $BDIR
+
 #pdflatex promotion.tex
 #pdflatex --interaction nonstopmode -halt-on-error -file-line-error promotion.tex # >/dev/null
 

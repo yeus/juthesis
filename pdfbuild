@@ -4,11 +4,12 @@
 
 echo "building pdf with anotations and bibtex"
 
-OLDIR=$PWD
-DIR=$PWD/../build
+#OLDIR=$PWD
+#DIR=$PWD/../build
+DIR=$PWD
 FN=$DIR/promotion
 
-cd $DIR
+#cd $DIR
 
 mkdir pictures
 #pdflatex promotion.tex
@@ -17,12 +18,12 @@ mkdir pictures
 # imags from the web can be downloaded
 #pdflatex --shell-escape --interaction nonstopmode $FN # >/dev/null
 pdflatex --shell-escape --interaction batchmode -file-line-error $FN # >/dev/null
-bibtex $FN
+bibtex "$FN.aux"
 #./acrofind
 pdflatex --interaction batchmode -file-line-error $FN # >/dev/null
 pdflatex --interaction batchmode -halt-on-error -file-line-error $FN # >/dev/null
 
-cd $OLDIR
+#cd $OLDIR
 
 echo " <<<<<<<<<<<<<<<pdf ready!!>>>>>>>>>>>> "
 
